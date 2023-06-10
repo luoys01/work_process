@@ -37,7 +37,7 @@ def update_progress():
     update_button.grid_forget()
     explanation_label.grid_forget()
 
-    progress_bar.grid(row=0, column=0, padx=10, pady=10, sticky='w')
+    progress_frame.grid(row=0, column=0, padx=10, pady=10, sticky='w')
     progress_label.grid(row=1, column=0, padx=10, sticky='w')
 
     root.update_idletasks()
@@ -62,7 +62,7 @@ def update_progress():
 
         time.sleep(1)
 
-    progress_bar.grid_forget()
+    progress_frame.grid_forget()
     progress_label.grid_forget()
 
     start_time_label.grid(row=0, column=0, padx=10, pady=5, sticky='w')
@@ -111,8 +111,9 @@ style.configure('TEntry', padding=5)
 main_frame = tk.Frame(root)
 main_frame.pack(expand=True, padx=10, pady=10)  # 使用pack布局，并设置expand为True
 
-progress_bar = ttk.Progressbar(main_frame, orient='horizontal', mode='determinate')
-progress_label = tk.Label(main_frame, text="")
+progress_frame = tk.Frame(main_frame)  # 创建一个框架来放置进度条和文本
+progress_bar = ttk.Progressbar(progress_frame, orient='horizontal', mode='determinate')
+progress_label = tk.Label(progress_frame, text="")
 
 start_time_label = tk.Label(main_frame, text="上班时间：")
 start_time_entry = ttk.Entry(main_frame, style='TEntry')
@@ -139,6 +140,10 @@ current_time_label.grid(row=3, column=0, padx=10, pady=5, sticky='w')
 current_time_entry.grid(row=3, column=1, padx=10, pady=5, sticky='w')
 auto_button.grid(row=4, column=0, padx=10, pady=10, sticky='w')
 update_button.grid(row=4, column=1, padx=10, sticky='w')
+
+progress_frame.grid(row=0, column=0, padx=10, pady=10, sticky='w')  # 放置进度条和文本的框架
+progress_bar.grid(row=0, column=0, padx=10, pady=10, sticky='w')
+progress_label.grid(row=1, column=0, padx=10, sticky='w')
 
 root.update_idletasks()
 
